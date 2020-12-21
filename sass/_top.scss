@@ -13,7 +13,6 @@
   padding: 0 .3rem;
  }
 
-
  .launch-info {
   width: 100%;
   text-align: center;
@@ -68,6 +67,11 @@
      background: $Dark-desaturated-blue;
      box-shadow: 0 20px 4px -6px $Very-dark-black-blue;
      border-radius: 8px;
+
+     @include media-sm {
+      width: 4rem;
+      height: 3.5rem;
+     }
 
      @include media-md {
       width: 9.5rem;

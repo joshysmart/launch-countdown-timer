@@ -112,6 +112,13 @@
   border-radius: 8px;
 }
 
+@media only screen and (min-width: 320px) {
+  .top .launch-info .timer-cards .timer-card .card {
+    width: 4rem;
+    height: 3.5rem;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .top .launch-info .timer-cards .timer-card .card {
     width: 9.5rem;
