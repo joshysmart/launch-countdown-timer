@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap");
 .top {
   width: 100%;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 197px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
