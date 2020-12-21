@@ -1,0 +1,64 @@
+.bottom {
+ width: 100%;
+ height: 197px;
+ background: #211A29;
+ overflow: hidden;
+
+ .bottom-bg {
+  width: 100%;
+  height: 197px; 
+  background-image: url("../images/pattern-hills.svg");
+  background-position: 0px 0;
+  animation: animate-bg linear 60s infinite alternate;  
+  
+  @include media-md {
+   width: 200%;
+   background-size: 100%;
+   background-position: 0px 0;
+  }
+ }
+ 
+ .social-icons {
+  width: 100%;
+  height: 197px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding:0 0 3rem 0;
+
+  @include media-md {
+   width: 50%;
+  }
+
+  .icon {
+   padding: 0 1rem;
+
+   svg {
+    path {
+     transition: background .4s ease-in-out;
+     &:hover {
+      fill: $Soft-red;
+     }
+    }
+   }
+  }
+ }
+
+ @keyframes animate-bg {
+  0% { background-position: -1000px 0 }
+  100% { background-position: 0px 0 } 
+ }
+
+ @include media-md {
+  @keyframes animate-bg {
+   0% { background-position: -500px 0 }
+   100% { background-position: 0px 0 } 
+  }
+ }
+ @include media-lg {
+  @keyframes animate-bg {
+   0% { background-position: -1200px 0 }
+   100% { background-position: 0px 0 } 
+  }
+ }
+}
