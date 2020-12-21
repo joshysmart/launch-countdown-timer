@@ -9,6 +9,10 @@
  background: #211A29;
  background-image: url('../images/bg-stars.svg');
 
+ @include media-sm {
+  padding: 0 .5rem;
+ }
+
 
  .launch-info {
   width: 100%;

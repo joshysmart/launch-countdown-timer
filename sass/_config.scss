@@ -33,3 +33,8 @@ $Very-dark-black-blue: #191a24;
   @content;
  }
 }
+@mixin media-sm {
+ @media only screen and (min-width: 320px) {
+  @content;
+ }
+}
