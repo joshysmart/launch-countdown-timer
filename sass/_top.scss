@@ -156,11 +156,11 @@
       @include media-sm {
        height: 3.5rem; 
        line-height: 3.5rem;
-       font-size: 5rem;
       }
       @include media-md {
        height: 9rem;
        line-height: 9rem;
+       font-size: 5rem;
       }
      }
     }

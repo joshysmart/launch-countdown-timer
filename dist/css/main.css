@@ -218,7 +218,6 @@
   .top .launch-info .timer-cards .timer-card .card-back .timer {
     height: 3.5rem;
     line-height: 3.5rem;
-    font-size: 5rem;
   }
 }
 
@@ -229,6 +228,7 @@
   .top .launch-info .timer-cards .timer-card .card-back .timer {
     height: 9rem;
     line-height: 9rem;
+    font-size: 5rem;
   }
 }
 
