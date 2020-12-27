@@ -73,44 +73,46 @@
   }
 }
 
-.top .launch-info .timer-cards .timer-card {
-  position: relative;
-}
-
-.top .launch-info .timer-cards .timer-card .card {
+.top .launch-info .timer-cards .timer-card__card {
   width: 4.5rem;
   height: 4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  position: relative;
-  background: #343650;
   -webkit-box-shadow: 0 20px 4px -6px #191a24;
           box-shadow: 0 20px 4px -6px #191a24;
-  border-radius: 8px;
+  position: relative;
+  -webkit-perspective: 150px;
+          perspective: 150px;
 }
 
 @media only screen and (max-width: 360px) {
-  .top .launch-info .timer-cards .timer-card .card {
+  .top .launch-info .timer-cards .timer-card__card {
     width: 4rem;
     height: 3.5rem;
   }
 }
 
 @media only screen and (min-width: 768px) {
-  .top .launch-info .timer-cards .timer-card .card {
+  .top .launch-info .timer-cards .timer-card__card {
+    -webkit-perspective: 300px;
+            perspective: 300px;
     width: 9.5rem;
     height: 9rem;
   }
 }
 
-.top .launch-info .timer-cards .timer-card .card::before {
+.top .launch-info .timer-cards .timer-card__card::before {
   width: 100%;
   height: 50%;
   position: absolute;
@@ -120,25 +122,23 @@
           box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15), 0 -10px 0 -5px #343650, 0 -10px 1px -4px rgba(0, 0, 0, 0.15), 0 -20px 0 -10px #343650, 0 -20px 1px -9px rgba(0, 0, 0, 0.15);
 }
 
-.top .launch-info .timer-cards .timer-card .card::after {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  content: '';
-  -webkit-box-shadow: inset 0 0 2rem 5px #242538;
-          box-shadow: inset 0 0 2rem 5px #242538;
-}
-
-.top .launch-info .timer-cards .timer-card .card .fold {
+.top .launch-info .timer-cards .timer-card__card .fold {
   width: 100%;
   position: absolute;
   content: '';
-  -webkit-box-shadow: 0px 0px 4px .5px #242538;
-          box-shadow: 0px 0px 4px .5px #242538;
-  z-index: 1;
+  -webkit-box-shadow: 0px 0px 1px .2px #242538;
+          box-shadow: 0px 0px 1px .2px #242538;
+  z-index: 12;
+  top: 2rem;
 }
 
-.top .launch-info .timer-cards .timer-card .card .fold:before {
+@media only screen and (min-width: 768px) {
+  .top .launch-info .timer-cards .timer-card__card .fold {
+    top: 4.5rem;
+  }
+}
+
+.top .launch-info .timer-cards .timer-card__card .fold:before {
   width: 10px;
   height: 10px;
   content: '';
@@ -149,7 +149,7 @@
   background: #211A29;
 }
 
-.top .launch-info .timer-cards .timer-card .card .fold:after {
+.top .launch-info .timer-cards .timer-card__card .fold:after {
   width: 10px;
   height: 10px;
   content: '';
@@ -160,67 +160,185 @@
   background: #211A29;
 }
 
-.top .launch-info .timer-cards .timer-card .card span {
-  font-size: 2.3rem;
-  font-weight: 700;
-  margin: 0;
-  color: #fb6087;
-}
-
-@media only screen and (min-width: 768px) {
-  .top .launch-info .timer-cards .timer-card .card span {
-    font-size: 5rem;
-  }
-}
-
-.top .launch-info .timer-cards .timer-card p {
-  text-transform: uppercase;
-  color: #8486a9;
-  font-size: .5rem;
-  letter-spacing: 2px;
-  margin: .7rem 0;
-}
-
-@media only screen and (min-width: 768px) {
-  .top .launch-info .timer-cards .timer-card p {
-    font-size: .9rem;
-    letter-spacing: 5px;
-    margin: 1.5rem 0;
-  }
-}
-
-.top .launch-info .timer-cards .timer-card .flip {
-  width: 100%;
+.top .launch-info .timer-cards .timer-card .card-top,
+.top .launch-info .timer-cards .timer-card .card-bottom,
+.top .launch-info .timer-cards .timer-card .card-front,
+.top .launch-info .timer-cards .timer-card .card-back {
+  width: 4.5rem;
   height: 2rem;
-  position: absolute;
-  top: 0;
-  -webkit-transform-origin: 0% 100%;
-          transform-origin: 0% 100%;
+  position: relative;
+  display: block;
+  background: #343650;
+  color: #fb6087;
   overflow: hidden;
+  -webkit-box-shadow: inset 0 0 2rem 5px #242538;
+          box-shadow: inset 0 0 2rem 5px #242538;
+}
+
+@media only screen and (max-width: 360px) {
+  .top .launch-info .timer-cards .timer-card .card-top,
+  .top .launch-info .timer-cards .timer-card .card-bottom,
+  .top .launch-info .timer-cards .timer-card .card-front,
+  .top .launch-info .timer-cards .timer-card .card-back {
+    width: 4rem;
+    height: 1.75rem;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-  .top .launch-info .timer-cards .timer-card .flip {
+  .top .launch-info .timer-cards .timer-card .card-top,
+  .top .launch-info .timer-cards .timer-card .card-bottom,
+  .top .launch-info .timer-cards .timer-card .card-front,
+  .top .launch-info .timer-cards .timer-card .card-back {
+    width: 9.5rem;
     height: 4.5rem;
   }
 }
 
-.top .launch-info .timer-cards .timer-card .animate {
-  -webkit-animation: flip-card 1s linear 1s infinite;
-          animation: flip-card 1s linear 1s infinite;
+.top .launch-info .timer-cards .timer-card .card-top .timer,
+.top .launch-info .timer-cards .timer-card .card-bottom .timer,
+.top .launch-info .timer-cards .timer-card .card-front .timer,
+.top .launch-info .timer-cards .timer-card .card-back .timer {
+  left: 50%;
+  width: 100%;
+  height: 4rem;
+  text-align: center;
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 4rem;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  position: absolute;
 }
 
-@-webkit-keyframes flip-card {
-  100% {
-    -webkit-transform: rotateX(90deg);
-            transform: rotateX(90deg);
+@media only screen and (max-width: 360px) {
+  .top .launch-info .timer-cards .timer-card .card-top .timer,
+  .top .launch-info .timer-cards .timer-card .card-bottom .timer,
+  .top .launch-info .timer-cards .timer-card .card-front .timer,
+  .top .launch-info .timer-cards .timer-card .card-back .timer {
+    height: 3.5rem;
+    line-height: 3.5rem;
+    font-size: 5rem;
   }
 }
 
-@keyframes flip-card {
-  100% {
-    -webkit-transform: rotateX(90deg);
-            transform: rotateX(90deg);
+@media only screen and (min-width: 768px) {
+  .top .launch-info .timer-cards .timer-card .card-top .timer,
+  .top .launch-info .timer-cards .timer-card .card-bottom .timer,
+  .top .launch-info .timer-cards .timer-card .card-front .timer,
+  .top .launch-info .timer-cards .timer-card .card-back .timer {
+    height: 9rem;
+    line-height: 9rem;
+  }
+}
+
+.top .launch-info .timer-cards .timer-card .card-top,
+.top .launch-info .timer-cards .timer-card .card-bottom,
+.top .launch-info .timer-cards .timer-card .card-front,
+.top .launch-info .timer-cards .timer-card .card-back {
+  width: 100%;
+}
+
+.top .launch-info .timer-cards .timer-card .card-top .timer,
+.top .launch-info .timer-cards .timer-card .card-front .timer {
+  top: 0;
+}
+
+.top .launch-info .timer-cards .timer-card .card-front {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.top .launch-info .timer-cards .timer-card .card-bottom .timer,
+.top .launch-info .timer-cards .timer-card .card-back .timer {
+  bottom: 0;
+}
+
+.top .launch-info .timer-cards .timer-card .card-back {
+  position: absolute;
+  top: 2rem;
+  z-index: 10;
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 360px) {
+  .top .launch-info .timer-cards .timer-card .card-back {
+    top: 1.75rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .top .launch-info .timer-cards .timer-card .card-back {
+    top: 4.5rem;
+  }
+}
+
+.top .launch-info .timer-cards .timer-card .card-bottom {
+  border-radius: 8px;
+}
+
+.top .launch-info .timer-cards .timer-card .card-top {
+  border-radius: 8px;
+}
+
+.top .launch-info .timer-cards .timer-card .card-front {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition-delay: .3s;
+          transition-delay: .3s;
+  -webkit-transform-origin: bottom center;
+          transform-origin: bottom center;
+}
+
+.top .launch-info .timer-cards .timer-card .card-back {
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+  -webkit-transform: rotateX(90deg);
+          transform: rotateX(90deg);
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.top .launch-info .timer-cards .flip .card-front {
+  -webkit-transform: rotateX(-90deg);
+          transform: rotateX(-90deg);
+  -webkit-transition: background-color .3s ease-in, color .3s ease-in, -webkit-transform .3s ease-in;
+  transition: background-color .3s ease-in, color .3s ease-in, -webkit-transform .3s ease-in;
+  transition: transform .3s ease-in, background-color .3s ease-in, color .3s ease-in;
+  transition: transform .3s ease-in, background-color .3s ease-in, color .3s ease-in, -webkit-transform .3s ease-in;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.top .launch-info .timer-cards .flip .card-back {
+  -webkit-transform: rotateX(0deg);
+          transform: rotateX(0deg);
+  -webkit-transition: -webkit-transform .3s ease-in;
+  transition: -webkit-transform .3s ease-in;
+  transition: transform .3s ease-in;
+  transition: transform .3s ease-in, -webkit-transform .3s ease-in;
+  -webkit-transition-delay: .3s;
+          transition-delay: .3s;
+}
+
+.top .launch-info .timer-cards .time-in {
+  font-size: .5rem;
+  letter-spacing: 2px;
+  margin: .7rem 0;
+  text-transform: uppercase;
+  color: #8486a9;
+}
+
+@media only screen and (min-width: 768px) {
+  .top .launch-info .timer-cards .time-in {
+    font-size: .9rem;
+    letter-spacing: 5px;
+    margin: 1.5rem 0;
   }
 }
 

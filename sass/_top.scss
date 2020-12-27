@@ -36,6 +36,7 @@
    justify-content: center;
    gap: 1rem;
    margin: 3.5rem 0 0 0;
+  
    @include media-sm {
     gap: 0.8rem;
    }
@@ -45,24 +46,24 @@
    }
 
    .timer-card {
-    position: relative;
-    .card {
+    &__card {
      width: 4.5rem;
      height: 4rem;
      display: flex;
+     flex-direction: column;
      align-items: center;
      justify-content: center;
-     position: relative;
-     background: $Dark-desaturated-blue;
      box-shadow: 0 20px 4px -6px $Very-dark-black-blue;
-     border-radius: 8px;
-
+     position: relative;
+     perspective: 150px;
+     
      @include media-sm {
-      width: 4rem;
-      height: 3.5rem;
-     }
-
-     @include media-md {
+       width: 4rem;
+       height: 3.5rem;
+      }
+      
+      @include media-md {
+      perspective: 300px;
       width: 9.5rem;
       height: 9rem;
      }   
@@ -79,23 +80,19 @@
       0 -10px 1px -4px rgba(0,0,0,0.15),
       0 -20px 0 -10px #343650,
       0 -20px 1px -9px rgba(0,0,0,0.15);
-     }
+     }     
 
-     &::after {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      content: '';
-      box-shadow: 
-      inset 0 0 2rem 5px #242538;
-     }
- 
      .fold {
       width: 100%;
       position: absolute;
       content: '';
-      box-shadow: 0px 0px 4px .5px #242538;
-      z-index: 1;
+      box-shadow: 0px 0px 1px .2px #242538;
+      z-index: 12;
+      top: 2rem;
+
+      @include media-md {
+       top: 4.5rem;
+      }
  
       &:before {
        width: 10px;
@@ -118,53 +115,139 @@
        background: #211A29;
       }
      }
- 
-     span {
+    }
+    
+    .card-top,
+    .card-bottom,
+    .card-front,
+    .card-back {
+     width: 4.5rem;
+     height: 2rem;
+     position: relative;
+     display: block;
+     background: $Dark-desaturated-blue;
+     color: $Soft-red;
+     overflow: hidden;
+     box-shadow: 
+     inset 0 0 2rem 5px #242538;
+
+
+     @include media-sm {
+      width: 4rem;
+      height: 1.75rem;
+     }
+
+     @include media-md {
+      width: 9.5rem;
+      height: 4.5rem; 
+     }
+     
+     .timer {
+      left: 50%;
+      width: 100%;
+      height: 4rem;
+      text-align: center;
       font-size: 2.3rem;
       font-weight: 700;
-      margin: 0;
-      color: $Soft-red;
-      @include media-md {
+      line-height: 4rem;
+      transform: translateX(-50%);
+      position: absolute;
+
+      @include media-sm {
+       height: 3.5rem; 
+       line-height: 3.5rem;
        font-size: 5rem;
+      }
+      @include media-md {
+       height: 9rem;
+       line-height: 9rem;
       }
      }
     }
-
-    p {
-     text-transform: uppercase;
-     color: $Grayish-blue;
-     font-size: .5rem;
-     letter-spacing: 2px;
-     margin: .7rem 0;
-
-     @include media-md {
-      font-size: .9rem;
-      letter-spacing: 5px;
-      margin: 1.5rem 0;
+    .card-top,
+    .card-bottom,
+    .card-front,
+    .card-back {
+     width: 100%;
+    }
+    .card-top,
+    .card-front {
+     .timer {
+      top: 0;
      }
     }
-
-    .flip {
-     width: 100%;
-     height: 2rem;
+    .card-front {
      position: absolute;
      top: 0;
-     transform-origin: 0% 100%;
-     overflow: hidden;
+     z-index: 10;
+
+    }
+    .card-bottom,
+    .card-back {
+     .timer {
+      bottom: 0;
+     }
+    }
+    .card-back {
+     position: absolute;
+     top: 2rem;
+     z-index: 10;
+     border-radius: 8px;
+
+     @include media-sm {
+      top: 1.75rem; 
+     }
 
      @include media-md {
-      height: 4.5rem;
+      top: 4.5rem; 
      }
-    } 
-    
-    .animate {
-     animation: flip-card 1s linear 1s infinite;
     }
+    
+    .card-bottom {
+     border-radius: 8px;
+    }
+    .card-top {
+     border-radius: 8px;
+    }
+    /// Flipclock Animation
+    .card-front {
+     transform: rotateX(0deg);
+     transform-style: preserve-3d;
+     transition-delay: .3s;
+     transform-origin: bottom center;
+    }
+    .card-back {
+     transform-origin: top center;
+     transform: rotateX(90deg);     
+     transition-delay: 0s;
+     transform-style: preserve-3d;
+    }
+   }
 
-    @keyframes flip-card {
-     100% {
-      transform: rotateX(90deg);
-     }
+   .flip {
+    .card-front {
+     transform: rotateX(-90deg);
+     transition: transform .3s ease-in, background-color .3s ease-in, color .3s ease-in;
+     transition-delay: 0s;      
+    }
+    
+    .card-back {
+     transform: rotateX(0deg);
+     transition: transform .3s ease-in;
+     transition-delay: .3s;
+    }
+   }
+   
+   .time-in {
+    font-size: .5rem;
+    letter-spacing: 2px;
+    margin: .7rem 0;
+    text-transform: uppercase;
+    color: $Grayish-blue;
+    @include media-md {
+     font-size: .9rem;    
+     letter-spacing: 5px;
+     margin: 1.5rem 0;
     }
    }
   }
