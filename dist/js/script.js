@@ -54,7 +54,7 @@ function updateCards() {
  cards[3].classList.add('flip');
  remainingTime.seconds == 59 ? cards[2].classList.add('flip') : '';
  remainingTime.minutes == 59 && remainingTime.seconds == 59 ? cards[1].classList.add('flip') : '';
- remainingTime.hours == 23 && remainingTime.seconds == 59 ? cards[0].classList.add('flip') : '';
+ remainingTime.hours == 23 && remainingTime.minutes == 59 && remainingTime.seconds == 59 ? cards[0].classList.add('flip') : '';
  
  clearTimeout(flip.timeout);
  
