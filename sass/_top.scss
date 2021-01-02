@@ -90,6 +90,9 @@
       z-index: 12;
       top: 2rem;
 
+      @include media-sm {
+       top: 1.75rem;
+      }
       @include media-md {
        top: 4.5rem;
       }

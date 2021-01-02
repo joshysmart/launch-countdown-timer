@@ -132,6 +132,12 @@
   top: 2rem;
 }
 
+@media only screen and (max-width: 360px) {
+  .top .launch-info .timer-cards .timer-card__card .fold {
+    top: 1.75rem;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .top .launch-info .timer-cards .timer-card__card .fold {
     top: 4.5rem;

@@ -20,7 +20,7 @@ const secondsBack = document.querySelector('.seconds-back');
 const secondsFront = document.querySelector('.seconds-front');
 const secondsBottom = document.querySelector('.seconds-bottom');
 
-const flip = {}
+const flip = {};
 
 function timeLeft(ms){
  days = Math.floor(ms / (24*60*60*1000));
@@ -35,48 +35,54 @@ function timeLeft(ms){
 
 function updateCards() {
  const todaysDate = new Date();
- const newYear = new Date(2021, 00, 01, 00, 00, 00);
- const milliseconds = newYear - todaysDate;
- const remainingTime = timeLeft(milliseconds);
+ const newYear = new Date(2021, 00, 00, 00, 00, 00);
+ flip.milliseconds = newYear - todaysDate;
+ flip.remainingTime = timeLeft(flip.milliseconds);
+
+ if (flip.milliseconds <= 0) {
+  clearInterval(flip.interval);
+  return;
+ }
+
+ secondsTop.textContent = `${flip.remainingTime.seconds < 10 ? '0' : ''}${flip.remainingTime.seconds}`;
+ secondsBack.textContent = `${flip.remainingTime.seconds < 10 ? '0' : ''}${flip.remainingTime.seconds}`;
  
- secondsTop.textContent = `${remainingTime.seconds < 10 ? '0' : ''}${remainingTime.seconds}`;
- secondsBack.textContent = `${remainingTime.seconds < 10 ? '0' : ''}${remainingTime.seconds}`;
+ minutesTop.textContent = `${flip.remainingTime.minutes < 10 ? '0' : ''}${flip.remainingTime.minutes}`;
+ minutesBack.textContent = `${flip.remainingTime.minutes < 10 ? '0' : ''}${flip.remainingTime.minutes}`;
  
- minutesTop.textContent = `${remainingTime.minutes < 10 ? '0' : ''}${remainingTime.minutes}`;
- minutesBack.textContent = `${remainingTime.minutes < 10 ? '0' : ''}${remainingTime.minutes}`;
+ hoursTop.textContent = `${flip.remainingTime.hours < 10 ? '0' : ''}${flip.remainingTime.hours}`;
+ hoursBack.textContent = `${flip.remainingTime.hours < 10 ? '0' : ''}${flip.remainingTime.hours}`;
  
- hoursTop.textContent = `${remainingTime.hours < 10 ? '0' : ''}${remainingTime.hours}`;
- hoursBack.textContent = `${remainingTime.hours < 10 ? '0' : ''}${remainingTime.hours}`;
- 
- daysTop.textContent = `${remainingTime.days < 10 ? '0' : ''}${remainingTime.days}`;
- daysBack.textContent = `${remainingTime.days < 10 ? '0' : ''}${remainingTime.days}`;
+ daysTop.textContent = `${flip.remainingTime.days < 10 ? '0' : ''}${flip.remainingTime.days}`;
+ daysBack.textContent = `${flip.remainingTime.days < 10 ? '0' : ''}${flip.remainingTime.days}`;
  
  cards[3].classList.add('flip');
- remainingTime.seconds == 59 ? cards[2].classList.add('flip') : '';
- remainingTime.minutes == 59 && remainingTime.seconds == 59 ? cards[1].classList.add('flip') : '';
- remainingTime.hours == 23 && remainingTime.minutes == 59 && remainingTime.seconds == 59 ? cards[0].classList.add('flip') : '';
+ flip.remainingTime.seconds == 59 ? cards[2].classList.add('flip') : '';
+ flip.remainingTime.minutes == 59 && flip.remainingTime.seconds == 59 ? cards[1].classList.add('flip') : '';
+ flip.remainingTime.hours == 23 && flip.remainingTime.minutes == 59 && flip.remainingTime.seconds == 59 ? cards[0].classList.add('flip') : '';
  
  clearTimeout(flip.timeout);
  
  flip.timeout = setTimeout(() => {
-  secondsBottom.textContent = `${remainingTime.seconds < 10 ? '0' : ''}${remainingTime.seconds}`;
-  secondsFront.textContent = `${remainingTime.seconds < 10 ? '0' : ''}${remainingTime.seconds}`;
+  secondsBottom.textContent = `${flip.remainingTime.seconds < 10 ? '0' : ''}${flip.remainingTime.seconds}`;
+  secondsFront.textContent = `${flip.remainingTime.seconds < 10 ? '0' : ''}${flip.remainingTime.seconds}`;
   
-  minutesBottom.textContent = `${remainingTime.minutes < 10 ? '0' : ''}${remainingTime.minutes}`;
-  minutesFront.textContent = `${remainingTime.minutes < 10 ? '0' : ''}${remainingTime.minutes}`;
+  minutesBottom.textContent = `${flip.remainingTime.minutes < 10 ? '0' : ''}${flip.remainingTime.minutes}`;
+  minutesFront.textContent = `${flip.remainingTime.minutes < 10 ? '0' : ''}${flip.remainingTime.minutes}`;
 
-  hoursBottom.textContent = `${remainingTime.hours < 10 ? '0' : ''}${remainingTime.hours}`;
-  hoursFront.textContent = `${remainingTime.hours < 10 ? '0' : ''}${remainingTime.hours}`;
+  hoursBottom.textContent = `${flip.remainingTime.hours < 10 ? '0' : ''}${flip.remainingTime.hours}`;
+  hoursFront.textContent = `${flip.remainingTime.hours < 10 ? '0' : ''}${flip.remainingTime.hours}`;
 
-  daysBottom.textContent = `${remainingTime.days < 10 ? '0' : ''}${remainingTime.days}`;
-  daysFront.textContent = `${remainingTime.days < 10 ? '0' : ''}${remainingTime.days}`;
+  daysBottom.textContent = `${flip.remainingTime.days < 10 ? '0' : ''}${flip.remainingTime.days}`;
+  daysFront.textContent = `${flip.remainingTime.days < 10 ? '0' : ''}${flip.remainingTime.days}`;
    
   cards.forEach(card => card.classList.remove('flip'));
  }, 600);
 }
 
-setInterval(() => {
+flip.interval = setInterval(() => {
  updateCards();
 }, 1000);
 
 updateCards();
+
