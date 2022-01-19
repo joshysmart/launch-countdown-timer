@@ -35,7 +35,7 @@ function timeLeft(ms){
 
 function updateCards() {
  const todaysDate = new Date();
- const newYear = new Date(2021, 00, 00, 00, 00, 00);
+ const newYear = new Date(2023, 00, 00, 00, 00, 00);
  flip.milliseconds = newYear - todaysDate;
  flip.remainingTime = timeLeft(flip.milliseconds);
 
